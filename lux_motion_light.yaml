@@ -20,9 +20,9 @@ blueprint:
       selector:
         entity:
           domain: sensor
-    min_lux:
-      name: Minimum Lux
-      description: "The minimum lux level required to trigger the automation."
+    max_lux:
+      name: Maximum Lux Threshold
+      description: "The maximum lux level allowed before triggering the automation."
       default: 100
       selector:
         number:
@@ -56,7 +56,7 @@ triggers:
 
 condition:
   - condition: template
-    value_template: "{{ states(input.lux_sensor)|float >= input.min_lux }}"
+    value_template: "{{ states(input.lux_sensor)|float <= input.max_lux }}"
 
 actions:
   - alias: "Turn on the light"
