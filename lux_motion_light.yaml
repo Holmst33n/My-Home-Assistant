@@ -56,7 +56,8 @@ triggers:
 
 condition:
   - condition: template
-    value_template: {{ states("{{ !input lux_sensor }}")|float <= {{ !input max_lux }} }}
+    value_template: >
+      {{ states("{{ !input lux_sensor }}")|float <= {{ !input max_lux }} }}
 
 actions:
   - alias: "Turn on the light"
