@@ -55,9 +55,9 @@ triggers:
   to: "on"
 
 condition:
-  - condition: template
-    value_template: >
-      {{ states("{{ !input lux_sensor }}")|float <= {{ !input max_lux }} }}
+  - condition: numeric_state
+    entity_id: !input lux_sensor
+    below: !input max_lux
 
 actions:
   - alias: "Turn on the light"
